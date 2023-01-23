@@ -1,11 +1,8 @@
-install: 
-	install-deps
+install:
+	npm ci
 
 run:
 	bin/nodejs-package.js 10
-
-install-deps:
-	npm ci
 
 test:
 	NODE_OPTIONS=--experimental-vm-modules npm test
