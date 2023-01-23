@@ -1,3 +1,3 @@
-import flat from './src/flat.js';
+import gendiff from './src/gendiff.js';
 
-export default flat;
+export default gendiff;
