@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import stringify from './printDiff.js';
-import { readData } from './readData.js';
+import readData from './readData.js';
 
 const flat = (filepath1, filepath2) => {
   const data1 = readData(filepath1);
@@ -40,7 +40,7 @@ const flat = (filepath1, filepath2) => {
 
   console.log(diff);
   console.log(stringify(diff));
-  return diff;
+  return stringify(diff);
 };
 
 export default flat;
