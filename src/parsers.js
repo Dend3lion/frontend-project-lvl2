@@ -16,8 +16,9 @@ const getParser = (type) => {
 };
 
 const parse = (filename) => {
-  const data = fs.readFileSync(filename, 'utf-8');
-  const type = path.extname(filename);
+  const filepath = path.join(process.cwd(), filename);
+  const data = fs.readFileSync(filepath, 'utf-8');
+  const type = path.extname(filepath);
   const parser = getParser(type);
 
   return parser(data);

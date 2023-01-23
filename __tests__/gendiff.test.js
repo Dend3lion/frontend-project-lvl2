@@ -1,7 +1,7 @@
 import path from 'path';
-import flat from '../src/flat.js';
+import flat from '../src/gendiff.js';
 
-const getFixturePath = (filename) => path.join(process.cwd(), '__fixtures__', filename);
+const getFixturePath = (filename) => path.join('__fixtures__', filename);
 
 const result = `{
     common: {
@@ -52,12 +52,12 @@ test('flat json diff', () => {
   const filepath1 = getFixturePath('file1.json');
   const filepath2 = getFixturePath('file2.json');
 
-  expect(flat(filepath1, filepath2, { format: 'stylish' })).toBe(result);
+  expect(flat(filepath1, filepath2, 'stylish')).toBe(result);
 });
 
 test('flat yaml diff', () => {
   const filepath1 = getFixturePath('file1.yml');
   const filepath2 = getFixturePath('file2.yml');
 
-  expect(flat(filepath1, filepath2, { format: 'stylish' })).toBe(result);
+  expect(flat(filepath1, filepath2, 'stylish')).toBe(result);
 });

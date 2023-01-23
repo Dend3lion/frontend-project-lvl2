@@ -1,18 +1,8 @@
 import _ from 'lodash';
-import stylish from './stylish.js';
+import getFormatter from './formatters/index.js';
 import parse from './parsers.js';
 
-const getFormatter = (format) => {
-  switch (format) {
-    case 'stylish':
-      return stylish;
-    default:
-  }
-
-  return null;
-};
-
-const flat = (filepath1, filepath2, { format }) => {
+const gendiff = (filepath1, filepath2, format) => {
   const data1 = parse(filepath1);
   const data2 = parse(filepath2);
 
@@ -56,4 +46,4 @@ const flat = (filepath1, filepath2, { format }) => {
   return formatter(diff);
 };
 
-export default flat;
+export default gendiff;
