@@ -1,4 +1,3 @@
-import path from 'path';
 import fs from 'fs';
 
 const readData = (filename) => {
@@ -10,6 +9,8 @@ const readData = (filename) => {
       return JSON.parse(data);
     default:
   }
+
+  return '';
 };
 
 export default readData;

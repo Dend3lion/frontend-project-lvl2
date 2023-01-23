@@ -10,11 +10,14 @@ const printValue = (data, indent) => {
       return `- ${key}: ${value}`;
     case 'unchanged':
       return `  ${key}: ${value}`;
-    case 'changed':
+    case 'changed': {
       const [oldVal, newVal] = value;
       return `- ${key}: ${oldVal}\n${indent}+ ${key}: ${newVal}`;
+    }
     default:
   }
+
+  return '';
 };
 
 const stringify = (value, replacer = ' ', spacesCount = 2) => {
