@@ -28,7 +28,10 @@
   "homepage": "https://github.com/Dend3lion/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^10.0.0",
-    "lodash": "^4.17.21"
+    "install": "^0.13.0",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "npm": "^9.3.1"
   },
   "devDependencies": {
     "eslint": "^8.32.0",

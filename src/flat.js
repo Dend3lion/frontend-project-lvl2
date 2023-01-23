@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import stringify from './printDiff.js';
+import stringify from './parsers.js';
 import readData from './readData.js';
 
 const flat = (filepath1, filepath2) => {
@@ -38,8 +38,6 @@ const flat = (filepath1, filepath2) => {
 
   const diff = iter(data1, data2);
 
-  console.log(diff);
-  console.log(stringify(diff));
   return stringify(diff);
 };
 
