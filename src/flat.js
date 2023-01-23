@@ -1,10 +1,20 @@
 import _ from 'lodash';
-import stringify from './parsers.js';
-import readData from './readData.js';
+import stylish from './stylish.js';
+import parse from './parsers.js';
 
-const flat = (filepath1, filepath2) => {
-  const data1 = readData(filepath1);
-  const data2 = readData(filepath2);
+const getFormatter = (format) => {
+  switch (format) {
+    case 'stylish':
+      return stylish;
+    default:
+  }
+
+  return null;
+};
+
+const flat = (filepath1, filepath2, { format }) => {
+  const data1 = parse(filepath1);
+  const data2 = parse(filepath2);
 
   const iter = (obj1, obj2) => {
     const keys1 = Object.keys(obj1);
@@ -13,32 +23,37 @@ const flat = (filepath1, filepath2) => {
 
     const result = keys.reduce((acc, key) => {
       if (!Object.hasOwn(obj1, key)) {
-        return [...acc, { key, value: obj2[key], status: 'added' }];
+        return [...acc, { key, newValue: obj2[key], type: 'added' }];
       }
       if (!Object.hasOwn(obj2, key)) {
-        return [...acc, { key, value: obj1[key], status: 'deleted' }];
+        return [...acc, { key, oldValue: obj1[key], type: 'deleted' }];
       }
       if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
         return [
           ...acc,
-          { key, value: iter(obj1[key], obj2[key]), status: 'inner' },
+          { key, children: iter(obj1[key], obj2[key]), type: 'nested' },
         ];
       }
       if (obj1[key] !== obj2[key]) {
         return [
           ...acc,
-          { key, value: [obj1[key], obj2[key]], status: 'changed' },
+          {
+            key,
+            oldValue: obj1[key],
+            newValue: obj2[key],
+            type: 'changed',
+          },
         ];
       }
-      return [...acc, { key, value: obj1[key], status: 'unchanged' }];
+      return [...acc, { key, oldValue: obj1[key], type: 'unchanged' }];
     }, []);
 
-    return result;
+    return _.sortBy(result, ['key']);
   };
 
   const diff = iter(data1, data2);
-
-  return stringify(diff);
+  const formatter = getFormatter(format);
+  return formatter(diff);
 };
 
 export default flat;
