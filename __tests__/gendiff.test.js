@@ -1,63 +1,33 @@
 import path from 'path';
 import flat from '../src/gendiff.js';
+import { stylishResult, plainResult } from '../__fixtures__/results.js';
 
 const getFixturePath = (filename) => path.join('__fixtures__', filename);
 
-const result = `{
-    common: {
-      + follow: false
-        setting1: Value 1
-      - setting2: 200
-      - setting3: true
-      + setting3: null
-      + setting4: blah blah
-      + setting5: {
-            key5: value5
-        }
-        setting6: {
-            doge: {
-              - wow: 
-              + wow: so much
-            }
-            key: value
-          + ops: vops
-        }
-    }
-    group1: {
-      - baz: bas
-      + baz: bars
-        foo: bar
-      - nest: {
-            key: value
-        }
-      + nest: str
-    }
-  - group2: {
-        abc: 12345
-        deep: {
-            id: 45
-        }
-    }
-  + group3: {
-        deep: {
-            id: {
-                number: 45
-            }
-        }
-        fee: 100500
-    }
-}`;
-
-test('flat json diff', () => {
+test('stylish json diff', () => {
   const filepath1 = getFixturePath('file1.json');
   const filepath2 = getFixturePath('file2.json');
 
-  expect(flat(filepath1, filepath2, 'stylish')).toBe(result);
+  expect(flat(filepath1, filepath2, 'stylish')).toBe(stylishResult);
 });
 
-test('flat yaml diff', () => {
+test('stylish yaml diff', () => {
   const filepath1 = getFixturePath('file1.yml');
   const filepath2 = getFixturePath('file2.yml');
 
-  expect(flat(filepath1, filepath2, 'stylish')).toBe(result);
+  expect(flat(filepath1, filepath2, 'stylish')).toBe(stylishResult);
+});
+
+test('plain json diff', () => {
+  const filepath1 = getFixturePath('file1.json');
+  const filepath2 = getFixturePath('file2.json');
+
+  expect(flat(filepath1, filepath2, 'plain')).toBe(plainResult);
+});
+
+test('plain yaml diff', () => {
+  const filepath1 = getFixturePath('file1.yml');
+  const filepath2 = getFixturePath('file2.yml');
+
+  expect(flat(filepath1, filepath2, 'plain')).toBe(plainResult);
 });

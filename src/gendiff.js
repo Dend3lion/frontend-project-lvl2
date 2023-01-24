@@ -43,6 +43,7 @@ const gendiff = (filepath1, filepath2, format) => {
 
   const diff = iter(data1, data2);
   const formatter = getFormatter(format);
+
   return formatter(diff);
 };
 
