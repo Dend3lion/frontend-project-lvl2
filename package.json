@@ -11,7 +11,7 @@
     "pre-push": "make lint"
   },
   "scripts": {
-    "test": "npx jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "engines": {
     "node": ">=14"

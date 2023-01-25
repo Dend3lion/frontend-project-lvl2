@@ -5,7 +5,7 @@ run:
 	bin/nodejs-package.js 10
 
 test:
-	NODE_OPTIONS=--experimental-vm-modules npm test
+	npm test
 
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
@@ -14,6 +14,4 @@ lint:
 	npx eslint .
 
 publish:
-	npm publish
-
-.PHONY: test
+	npm publish --dry-run
