@@ -20,8 +20,8 @@ const getParser = (type) => {
 const parse = (filename) => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
-  const filepath = path.join(__dirname, '..', filename);
-  console.log(filename, __dirname);
+  const filepath = path.join(filename);
+  console.log(filepath);
 
   const data = fs.readFileSync(filepath, 'utf-8');
   const type = path.extname(filepath);
