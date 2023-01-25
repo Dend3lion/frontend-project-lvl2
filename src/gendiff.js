@@ -2,7 +2,7 @@ import _ from 'lodash';
 import getFormatter from './formatters/index.js';
 import parse from './parsers.js';
 
-const gendiff = (filepath1, filepath2, format) => {
+const gendiff = (filepath1, filepath2, format = 'stylish') => {
   const data1 = parse(filepath1);
   const data2 = parse(filepath2);
 
