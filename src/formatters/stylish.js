@@ -70,6 +70,7 @@ const stylish = (value, replacer = ' ', spacesCount = 2) => {
             depth + 1,
           )}`;
         default:
+          throw new Error(`Unknown node type: '${currentValue.type}'!`);
       }
     }
 

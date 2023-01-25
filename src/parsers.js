@@ -10,9 +10,8 @@ const getParser = (type) => {
     case '.yml':
       return yaml.load;
     default:
+      throw new Error(`Unknown file type: '${type}'!`);
   }
-
-  return null;
 };
 
 const parse = (filepath) => {
